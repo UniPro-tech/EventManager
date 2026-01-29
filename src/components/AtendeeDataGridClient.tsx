@@ -92,6 +92,7 @@ export default function EventAtendeeDataGridClient({
         }}
         rowSelectionModel={rowSelectionModel}
         showToolbar
+        autoHeight
       />
     </Box>
   );
