@@ -17,6 +17,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import Atendee from "@/lib/atendee";
 import { AtendeeStatus } from "@/lib/types/atendee";
+import Link from "next/link";
 
 export default async function EventCard({
   event,
@@ -74,19 +75,24 @@ export default async function EventCard({
               !event.title || event.title.length <= TITLE_MAX
             }
           >
-            <Typography
-              variant="h6"
-              component="h3"
-              noWrap
-              sx={{
-                maxWidth: { xs: "100%", sm: "60%" },
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-              }}
+            <Link
+              href={`/events/${event.id}`}
+              style={{ textDecoration: "none" }}
             >
-              {truncatedTitle}
-            </Typography>
+              <Typography
+                variant="h6"
+                component="h3"
+                noWrap
+                sx={{
+                  maxWidth: { xs: "100%", sm: "60%" },
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {truncatedTitle}
+              </Typography>
+            </Link>
           </Tooltip>
 
           <Box sx={{ mt: { xs: 1, sm: 0 } }}>
