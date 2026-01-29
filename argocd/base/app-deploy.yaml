@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: registry.uniproject.jp/infra/event-manager:0.1.0
+          image: registry.uniproject.jp/infra/event-manager:0.1.4
           imagePullPolicy: Always
           envFrom:
             - secretRef:
