@@ -54,7 +54,7 @@ export default async function EventCard({
     return text.length > max ? text.slice(0, max - 1) + "…" : text;
   };
 
-  const TITLE_MAX = 60;
+  const TITLE_MAX = 80;
   const DESC_MAX = 160;
   const truncatedTitle = truncate(event.title, TITLE_MAX);
   const truncatedDesc = truncate(event.description || "", DESC_MAX);
