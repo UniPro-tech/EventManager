@@ -5,6 +5,7 @@ resources:
   - postgres-deploy.yaml
   - app-deploy.yaml
   - secret.yaml
+  - updater.yaml
 labels:
   - includeSelectors: true
     pairs:
