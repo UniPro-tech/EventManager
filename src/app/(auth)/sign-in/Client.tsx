@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 
 export default function SignInPageClient({
   redirect: redirectUrl,
@@ -24,9 +23,9 @@ export default function SignInPageClient({
     e.preventDefault();
     setError(null);
 
-    const res = await signIn.oauth2({
+    await signIn.oauth2({
       providerId: "unique",
-      callbackURL: `${window.location.origin}/${redirectUrl || ""}`,
+      callbackURL: `${window.location.origin}${redirectUrl || ""}`,
     });
   }
 
