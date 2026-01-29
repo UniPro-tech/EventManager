@@ -84,7 +84,7 @@ export default async function EventCard({
                 component="h3"
                 noWrap
                 sx={{
-                  maxWidth: { xs: "100%", sm: "60%" },
+                  maxWidth: { xs: "100%", sm: "60%", md: "80%" },
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
