@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormHelperText,
   MenuItem,
   Select,
 } from "@mui/material";
@@ -109,10 +110,22 @@ export default function ActionBox({
     return false;
   })();
 
-  return (
-    <React.Fragment>
-      <Box display="flex" gap={2} pt={2}>
-        {atendenceData ? (
+  let isCantChangeBtn = false;
+
+  const primaryButton = (() => {
+    // 終わっているなら受付不可
+    if (isEnded) {
+      return (
+        <Button variant="outlined" disabled sx={{ textTransform: "none" }}>
+          受付不可
+        </Button>
+      );
+    }
+
+    // 公開中かつ登録締切内なら申し込む（未申込） or 確認・変更（申込済）
+    if (isEnabled && isRegistrationOpen) {
+      if (atendenceData) {
+        return (
           <Button
             variant="contained"
             sx={{ textTransform: "none" }}
@@ -120,20 +133,42 @@ export default function ActionBox({
           >
             申し込み内容の確認・変更
           </Button>
-        ) : isEnabled && isRegistrationOpen && !isEnded ? (
-          <Button
-            variant="contained"
-            sx={{ textTransform: "none" }}
-            onClick={handleOpenDialog}
-          >
-            申し込む
-          </Button>
-        ) : (
-          <Button variant="outlined" disabled sx={{ textTransform: "none" }}>
-            受付不可
-          </Button>
-        )}
+        );
+      }
+      return (
+        <Button
+          variant="contained"
+          sx={{ textTransform: "none" }}
+          onClick={handleOpenDialog}
+        >
+          申し込む
+        </Button>
+      );
+    }
 
+    // 登録締切などで受付は閉じている場合
+    if (atendenceData) {
+      // 既に申し込み済みなら確認は表示するが編集不可にする
+      isCantChangeBtn = true;
+      return (
+        <Button variant="contained" disabled sx={{ textTransform: "none" }}>
+          申し込み内容の確認・変更
+        </Button>
+      );
+    }
+
+    // それ以外は受付不可
+    return (
+      <Button variant="outlined" disabled sx={{ textTransform: "none" }}>
+        受付不可
+      </Button>
+    );
+  })();
+
+  return (
+    <React.Fragment>
+      <Box display="flex" gap={2} pt={2}>
+        {primaryButton}
         {isAdmin && (
           <Button
             component={Link}
@@ -145,6 +180,11 @@ export default function ActionBox({
           </Button>
         )}
       </Box>
+      {isCantChangeBtn && (
+        <FormHelperText sx={{ mt: 1, ml: 1 }}>
+          申し込み受付期間を過ぎています。変更は主催者までお申し付けください。
+        </FormHelperText>
+      )}
       <Dialog open={isDialogOpen} onClose={handleCloseDialog}>
         <DialogTitle>参加登録</DialogTitle>
         <DialogContent>

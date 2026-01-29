@@ -88,6 +88,21 @@ export default class Atendee {
     });
   }
 
+  static async findById(id: string): Promise<Atendee | null> {
+    const atendeeData = await prisma.eventAttendee.findUnique({
+      where: { id },
+    });
+    if (!atendeeData) return null;
+    return new Atendee({
+      id: atendeeData.id,
+      userId: atendeeData.userId,
+      eventId: atendeeData.eventId,
+      status: atendeeData.status as AtendeeStatus,
+      createdAt: atendeeData.createdAt,
+      updatedAt: atendeeData.updatedAt,
+    });
+  }
+
   toPlain(): AtendeePlain {
     return {
       id: this.id,

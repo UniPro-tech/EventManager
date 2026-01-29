@@ -14,8 +14,10 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.7",
     "@mui/material": "^7.3.7",
+    "@mui/x-data-grid": "^8.26.0",
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
+    "@tailwindcss/postcss": "^4",
     "@types/pg": "^8.16.0",
     "better-auth": "^1.4.17",
     "dotenv": "^17.2.3",
@@ -25,9 +27,8 @@
     "prisma": "^7.3.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "tsx": "^4.21.0",
     "tailwindcss": "^4",
-    "@tailwindcss/postcss": "^4"
+    "tsx": "^4.21.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
