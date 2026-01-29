@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import MiniDrawer from "@/components/Sidebar";
+import CustomBreadcrumbs from "@/components/CustomBreadcrumbs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MiniDrawer>{children}</MiniDrawer>
+        <MiniDrawer>
+          <CustomBreadcrumbs />
+          {children}
+        </MiniDrawer>
       </body>
     </html>
   );
