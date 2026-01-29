@@ -1,0 +1,15 @@
+name: unipro-event
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: unipro
+      POSTGRES_PASSWORD: unipro_password
+      POSTGRES_DB: unipro_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - event_db_data:/var/lib/postgresql/data
+
+volumes:
+  event_db_data:
