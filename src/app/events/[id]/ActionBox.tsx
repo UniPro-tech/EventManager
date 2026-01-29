@@ -169,6 +169,14 @@ export default function ActionBox({
     <React.Fragment>
       <Box display="flex" gap={2} pt={2}>
         {primaryButton}
+        <Button
+          component={Link}
+          href={`/events/${event.id}/atendees`}
+          variant="outlined"
+          sx={{ textTransform: "none" }}
+        >
+          参加者一覧
+        </Button>
         {isAdmin && (
           <Button
             component={Link}
