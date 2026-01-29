@@ -15,7 +15,7 @@ spec:
       priority: 10
       services:
         - kind: Service
-          name: api
+          name: app
           passHostHeader: true
           port: 80
           responseForwarding:
