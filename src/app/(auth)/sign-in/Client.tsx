@@ -13,7 +13,11 @@ import { useState } from "react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-export default function SignInPageClient() {
+export default function SignInPageClient({
+  redirect: redirectUrl,
+}: {
+  redirect?: string;
+}) {
   const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
@@ -22,14 +26,8 @@ export default function SignInPageClient() {
 
     const res = await signIn.oauth2({
       providerId: "unique",
-      callbackURL: `${window.location.origin}/`,
+      callbackURL: `${window.location.origin}/${redirectUrl || ""}`,
     });
-
-    if (res.error) {
-      setError(res.error.message || "Something went wrong.");
-    } else {
-      redirect("/");
-    }
   }
 
   return (
