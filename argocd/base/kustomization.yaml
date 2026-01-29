@@ -6,6 +6,7 @@ resources:
   - app-deploy.yaml
   - secret.yaml
   - updater.yaml
+  - ingress.yaml
 labels:
   - includeSelectors: true
     pairs:
