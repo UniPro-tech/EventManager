@@ -17,8 +17,10 @@ import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 import { forbidden } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "イベント編集 - UniPro Event Manager",
+export const generateMetadata = async () => {
+  return {
+    title: "イベント編集 - UniPro Event Manager",
+  } as Metadata;
 };
 
 export default async function EventEditPage({
