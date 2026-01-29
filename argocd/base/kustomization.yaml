@@ -7,7 +7,3 @@ resources:
   - secret.yaml
   - updater.yaml
   - ingress.yaml
-labels:
-  - includeSelectors: true
-    pairs:
-      app: event-manager
