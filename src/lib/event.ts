@@ -210,6 +210,44 @@ export default class Event {
     );
   }
 
+  static async findByAtendeeUserId(
+    userId: string,
+    {
+      status,
+      atendeeStatuses = [AtendeeStatus.Attend, AtendeeStatus.Maybe],
+    }: { status?: EventStatus[]; atendeeStatuses?: AtendeeStatus[] } = {},
+  ): Promise<Event[]> {
+    const events = await prisma.event.findMany({
+      where: {
+        ...(status ? { status: { in: status } } : {}),
+        participants: {
+          some: {
+            userId,
+            status: { in: atendeeStatuses },
+          },
+        },
+      },
+    });
+
+    return events.map(
+      (event) =>
+        new Event({
+          id: event.id,
+          title: event.title,
+          description: event.description || undefined,
+          date: event.date,
+          startAt: event.startTime || undefined,
+          endAt: event.endTime || undefined,
+          registrationDeadline: event.registrationDeadline || undefined,
+          capacity: event.capacity || undefined,
+          location: event.location || undefined,
+          status: event.status as EventStatus,
+          createdAt: event.createdAt || undefined,
+          updatedAt: event.updatedAt || undefined,
+        }),
+    );
+  }
+
   async addAtendee(
     userId: string,
     status: AtendeeStatus = AtendeeStatus.Attend,
