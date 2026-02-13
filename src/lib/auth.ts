@@ -30,8 +30,7 @@ export const auth = betterAuth({
           providerId: "unique",
           clientId: process.env.UNIQUE_CLIENT_ID!,
           clientSecret: process.env.UNIQUE_CLIENT_SECRET!,
-          scopes: ["openid"],
-          authentication: "basic",
+          scopes: ["openid", "profile", "email"],
           discoveryUrl:
             "https://auth.uniproject.jp/.well-known/openid-configuration",
         },
