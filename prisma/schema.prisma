@@ -85,19 +85,20 @@ model Verification {
 }
 
 model Event {
-  id                   String          @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  id                   String                @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   title                String
-  description          String?         @db.Text
-  date                 DateTime        @db.Date
-  startTime            DateTime?       @db.Time
-  endTime              DateTime?       @db.Time
+  description          String?               @db.Text
+  date                 DateTime              @db.Date
+  startTime            DateTime?             @db.Time
+  endTime              DateTime?             @db.Time
   capacity             Int?
   registrationDeadline DateTime?
   location             String?
-  status               EventStatus     @default(DRAFT)
-  createdAt            DateTime        @default(now())
-  updatedAt            DateTime        @updatedAt
+  status               EventStatus           @default(DRAFT)
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
   participants         EventAttendee[]
+  atendeeCheckInCodes  AtendeeCheckInCodes[]
 
   @@map("event")
 }
@@ -112,10 +113,22 @@ model EventAttendee {
   updatedAt DateTime       @updatedAt
   event     Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
   user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isAtended Boolean        @default(false)
 
   @@index([eventId])
   @@index([userId])
+  @@index([isAtended])
   @@map("event_attendee")
+}
+
+model AtendeeCheckInCodes {
+  id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  eventId   String   @unique @db.Uuid
+  expiresAt DateTime
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt])
+  @@map("atendee_check_in_codes")
 }
 
 enum EventStatus {

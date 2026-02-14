@@ -187,6 +187,14 @@ export default function ActionBox({
             イベントの編集
           </Button>
         )}
+        <Button
+          component={Link}
+          href={`/events/${event.id}/checkin`}
+          variant="outlined"
+          sx={{ textTransform: "none" }}
+        >
+          出席登録
+        </Button>
       </Box>
       {isCantChangeBtn && (
         <FormHelperText sx={{ mt: 1, ml: 1 }}>

@@ -32,6 +32,7 @@ export type EventAttendeeMinAggregateOutputType = {
   status: $Enums.AttendeeStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  isAtended: boolean | null
 }
 
 export type EventAttendeeMaxAggregateOutputType = {
@@ -42,6 +43,7 @@ export type EventAttendeeMaxAggregateOutputType = {
   status: $Enums.AttendeeStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  isAtended: boolean | null
 }
 
 export type EventAttendeeCountAggregateOutputType = {
@@ -52,6 +54,7 @@ export type EventAttendeeCountAggregateOutputType = {
   status: number
   createdAt: number
   updatedAt: number
+  isAtended: number
   _all: number
 }
 
@@ -64,6 +67,7 @@ export type EventAttendeeMinAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  isAtended?: true
 }
 
 export type EventAttendeeMaxAggregateInputType = {
@@ -74,6 +78,7 @@ export type EventAttendeeMaxAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  isAtended?: true
 }
 
 export type EventAttendeeCountAggregateInputType = {
@@ -84,6 +89,7 @@ export type EventAttendeeCountAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  isAtended?: true
   _all?: true
 }
 
@@ -167,6 +173,7 @@ export type EventAttendeeGroupByOutputType = {
   status: $Enums.AttendeeStatus
   createdAt: Date
   updatedAt: Date
+  isAtended: boolean
   _count: EventAttendeeCountAggregateOutputType | null
   _min: EventAttendeeMinAggregateOutputType | null
   _max: EventAttendeeMaxAggregateOutputType | null
@@ -198,6 +205,7 @@ export type EventAttendeeWhereInput = {
   status?: Prisma.EnumAttendeeStatusFilter<"EventAttendee"> | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFilter<"EventAttendee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EventAttendee"> | Date | string
+  isAtended?: Prisma.BoolFilter<"EventAttendee"> | boolean
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -210,6 +218,7 @@ export type EventAttendeeOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isAtended?: Prisma.SortOrder
   event?: Prisma.EventOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
 }
@@ -225,6 +234,7 @@ export type EventAttendeeWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumAttendeeStatusFilter<"EventAttendee"> | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFilter<"EventAttendee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EventAttendee"> | Date | string
+  isAtended?: Prisma.BoolFilter<"EventAttendee"> | boolean
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
@@ -237,6 +247,7 @@ export type EventAttendeeOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isAtended?: Prisma.SortOrder
   _count?: Prisma.EventAttendeeCountOrderByAggregateInput
   _max?: Prisma.EventAttendeeMaxOrderByAggregateInput
   _min?: Prisma.EventAttendeeMinOrderByAggregateInput
@@ -253,6 +264,7 @@ export type EventAttendeeScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumAttendeeStatusWithAggregatesFilter<"EventAttendee"> | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"EventAttendee"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"EventAttendee"> | Date | string
+  isAtended?: Prisma.BoolWithAggregatesFilter<"EventAttendee"> | boolean
 }
 
 export type EventAttendeeCreateInput = {
@@ -261,6 +273,7 @@ export type EventAttendeeCreateInput = {
   status?: $Enums.AttendeeStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  isAtended?: boolean
   event: Prisma.EventCreateNestedOneWithoutParticipantsInput
   user: Prisma.UserCreateNestedOneWithoutEventAttendeesInput
 }
@@ -273,6 +286,7 @@ export type EventAttendeeUncheckedCreateInput = {
   status?: $Enums.AttendeeStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  isAtended?: boolean
 }
 
 export type EventAttendeeUpdateInput = {
@@ -281,6 +295,7 @@ export type EventAttendeeUpdateInput = {
   status?: Prisma.EnumAttendeeStatusFieldUpdateOperationsInput | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAtended?: Prisma.BoolFieldUpdateOperationsInput | boolean
   event?: Prisma.EventUpdateOneRequiredWithoutParticipantsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutEventAttendeesNestedInput
 }
@@ -293,6 +308,7 @@ export type EventAttendeeUncheckedUpdateInput = {
   status?: Prisma.EnumAttendeeStatusFieldUpdateOperationsInput | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAtended?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type EventAttendeeCreateManyInput = {
@@ -303,6 +319,7 @@ export type EventAttendeeCreateManyInput = {
   status?: $Enums.AttendeeStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  isAtended?: boolean
 }
 
 export type EventAttendeeUpdateManyMutationInput = {
@@ -311,6 +328,7 @@ export type EventAttendeeUpdateManyMutationInput = {
   status?: Prisma.EnumAttendeeStatusFieldUpdateOperationsInput | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAtended?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type EventAttendeeUncheckedUpdateManyInput = {
@@ -321,6 +339,7 @@ export type EventAttendeeUncheckedUpdateManyInput = {
   status?: Prisma.EnumAttendeeStatusFieldUpdateOperationsInput | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAtended?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type EventAttendeeListRelationFilter = {
@@ -341,6 +360,7 @@ export type EventAttendeeCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isAtended?: Prisma.SortOrder
 }
 
 export type EventAttendeeMaxOrderByAggregateInput = {
@@ -351,6 +371,7 @@ export type EventAttendeeMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isAtended?: Prisma.SortOrder
 }
 
 export type EventAttendeeMinOrderByAggregateInput = {
@@ -361,6 +382,7 @@ export type EventAttendeeMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isAtended?: Prisma.SortOrder
 }
 
 export type EventAttendeeCreateNestedManyWithoutUserInput = {
@@ -457,6 +479,7 @@ export type EventAttendeeCreateWithoutUserInput = {
   status?: $Enums.AttendeeStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  isAtended?: boolean
   event: Prisma.EventCreateNestedOneWithoutParticipantsInput
 }
 
@@ -467,6 +490,7 @@ export type EventAttendeeUncheckedCreateWithoutUserInput = {
   status?: $Enums.AttendeeStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  isAtended?: boolean
 }
 
 export type EventAttendeeCreateOrConnectWithoutUserInput = {
@@ -506,6 +530,7 @@ export type EventAttendeeScalarWhereInput = {
   status?: Prisma.EnumAttendeeStatusFilter<"EventAttendee"> | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFilter<"EventAttendee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EventAttendee"> | Date | string
+  isAtended?: Prisma.BoolFilter<"EventAttendee"> | boolean
 }
 
 export type EventAttendeeCreateWithoutEventInput = {
@@ -514,6 +539,7 @@ export type EventAttendeeCreateWithoutEventInput = {
   status?: $Enums.AttendeeStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  isAtended?: boolean
   user: Prisma.UserCreateNestedOneWithoutEventAttendeesInput
 }
 
@@ -524,6 +550,7 @@ export type EventAttendeeUncheckedCreateWithoutEventInput = {
   status?: $Enums.AttendeeStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  isAtended?: boolean
 }
 
 export type EventAttendeeCreateOrConnectWithoutEventInput = {
@@ -559,6 +586,7 @@ export type EventAttendeeCreateManyUserInput = {
   status?: $Enums.AttendeeStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  isAtended?: boolean
 }
 
 export type EventAttendeeUpdateWithoutUserInput = {
@@ -567,6 +595,7 @@ export type EventAttendeeUpdateWithoutUserInput = {
   status?: Prisma.EnumAttendeeStatusFieldUpdateOperationsInput | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAtended?: Prisma.BoolFieldUpdateOperationsInput | boolean
   event?: Prisma.EventUpdateOneRequiredWithoutParticipantsNestedInput
 }
 
@@ -577,6 +606,7 @@ export type EventAttendeeUncheckedUpdateWithoutUserInput = {
   status?: Prisma.EnumAttendeeStatusFieldUpdateOperationsInput | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAtended?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type EventAttendeeUncheckedUpdateManyWithoutUserInput = {
@@ -586,6 +616,7 @@ export type EventAttendeeUncheckedUpdateManyWithoutUserInput = {
   status?: Prisma.EnumAttendeeStatusFieldUpdateOperationsInput | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAtended?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type EventAttendeeCreateManyEventInput = {
@@ -595,6 +626,7 @@ export type EventAttendeeCreateManyEventInput = {
   status?: $Enums.AttendeeStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  isAtended?: boolean
 }
 
 export type EventAttendeeUpdateWithoutEventInput = {
@@ -603,6 +635,7 @@ export type EventAttendeeUpdateWithoutEventInput = {
   status?: Prisma.EnumAttendeeStatusFieldUpdateOperationsInput | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAtended?: Prisma.BoolFieldUpdateOperationsInput | boolean
   user?: Prisma.UserUpdateOneRequiredWithoutEventAttendeesNestedInput
 }
 
@@ -613,6 +646,7 @@ export type EventAttendeeUncheckedUpdateWithoutEventInput = {
   status?: Prisma.EnumAttendeeStatusFieldUpdateOperationsInput | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAtended?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type EventAttendeeUncheckedUpdateManyWithoutEventInput = {
@@ -622,6 +656,7 @@ export type EventAttendeeUncheckedUpdateManyWithoutEventInput = {
   status?: Prisma.EnumAttendeeStatusFieldUpdateOperationsInput | $Enums.AttendeeStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAtended?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -634,6 +669,7 @@ export type EventAttendeeSelect<ExtArgs extends runtime.Types.Extensions.Interna
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isAtended?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["eventAttendee"]>
@@ -646,6 +682,7 @@ export type EventAttendeeSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isAtended?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["eventAttendee"]>
@@ -658,6 +695,7 @@ export type EventAttendeeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isAtended?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["eventAttendee"]>
@@ -670,9 +708,10 @@ export type EventAttendeeSelectScalar = {
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  isAtended?: boolean
 }
 
-export type EventAttendeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "userId" | "role" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["eventAttendee"]>
+export type EventAttendeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "userId" | "role" | "status" | "createdAt" | "updatedAt" | "isAtended", ExtArgs["result"]["eventAttendee"]>
 export type EventAttendeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -700,6 +739,7 @@ export type $EventAttendeePayload<ExtArgs extends runtime.Types.Extensions.Inter
     status: $Enums.AttendeeStatus
     createdAt: Date
     updatedAt: Date
+    isAtended: boolean
   }, ExtArgs["result"]["eventAttendee"]>
   composites: {}
 }
@@ -1132,6 +1172,7 @@ export interface EventAttendeeFieldRefs {
   readonly status: Prisma.FieldRef<"EventAttendee", 'AttendeeStatus'>
   readonly createdAt: Prisma.FieldRef<"EventAttendee", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"EventAttendee", 'DateTime'>
+  readonly isAtended: Prisma.FieldRef<"EventAttendee", 'Boolean'>
 }
     
 

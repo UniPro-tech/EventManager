@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.3.0
- * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
+ * Prisma Client JS version: 7.4.0
+ * Query Engine version: ab56fe763f921d033a6c195e7ddeb3e255bdbb57
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.3.0",
-  engine: "9d6ad21cbbceab97458517b147a6a09ff43aa735"
+  client: "7.4.0",
+  engine: "ab56fe763f921d033a6c195e7ddeb3e255bdbb57"
 }
 
 /**
@@ -389,7 +389,8 @@ export const ModelName = {
   Account: 'Account',
   Verification: 'Verification',
   Event: 'Event',
-  EventAttendee: 'EventAttendee'
+  EventAttendee: 'EventAttendee',
+  AtendeeCheckInCodes: 'AtendeeCheckInCodes'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -405,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "event" | "eventAttendee"
+    modelProps: "user" | "session" | "account" | "verification" | "event" | "eventAttendee" | "atendeeCheckInCodes"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -853,6 +854,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AtendeeCheckInCodes: {
+      payload: Prisma.$AtendeeCheckInCodesPayload<ExtArgs>
+      fields: Prisma.AtendeeCheckInCodesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AtendeeCheckInCodesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AtendeeCheckInCodesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload>
+        }
+        findFirst: {
+          args: Prisma.AtendeeCheckInCodesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AtendeeCheckInCodesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload>
+        }
+        findMany: {
+          args: Prisma.AtendeeCheckInCodesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload>[]
+        }
+        create: {
+          args: Prisma.AtendeeCheckInCodesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload>
+        }
+        createMany: {
+          args: Prisma.AtendeeCheckInCodesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AtendeeCheckInCodesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload>[]
+        }
+        delete: {
+          args: Prisma.AtendeeCheckInCodesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload>
+        }
+        update: {
+          args: Prisma.AtendeeCheckInCodesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload>
+        }
+        deleteMany: {
+          args: Prisma.AtendeeCheckInCodesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AtendeeCheckInCodesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AtendeeCheckInCodesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload>[]
+        }
+        upsert: {
+          args: Prisma.AtendeeCheckInCodesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AtendeeCheckInCodesPayload>
+        }
+        aggregate: {
+          args: Prisma.AtendeeCheckInCodesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAtendeeCheckInCodes>
+        }
+        groupBy: {
+          args: Prisma.AtendeeCheckInCodesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AtendeeCheckInCodesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AtendeeCheckInCodesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AtendeeCheckInCodesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -980,10 +1055,20 @@ export const EventAttendeeScalarFieldEnum = {
   role: 'role',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isAtended: 'isAtended'
 } as const
 
 export type EventAttendeeScalarFieldEnum = (typeof EventAttendeeScalarFieldEnum)[keyof typeof EventAttendeeScalarFieldEnum]
+
+
+export const AtendeeCheckInCodesScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  expiresAt: 'expiresAt'
+} as const
+
+export type AtendeeCheckInCodesScalarFieldEnum = (typeof AtendeeCheckInCodesScalarFieldEnum)[keyof typeof AtendeeCheckInCodesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1207,6 +1292,7 @@ export type GlobalOmitConfig = {
   verification?: Prisma.VerificationOmit
   event?: Prisma.EventOmit
   eventAttendee?: Prisma.EventAttendeeOmit
+  atendeeCheckInCodes?: Prisma.AtendeeCheckInCodesOmit
 }
 
 /* Types for Logging */

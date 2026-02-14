@@ -56,7 +56,8 @@ export const ModelName = {
   Account: 'Account',
   Verification: 'Verification',
   Event: 'Event',
-  EventAttendee: 'EventAttendee'
+  EventAttendee: 'EventAttendee',
+  AtendeeCheckInCodes: 'AtendeeCheckInCodes'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -163,10 +164,20 @@ export const EventAttendeeScalarFieldEnum = {
   role: 'role',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isAtended: 'isAtended'
 } as const
 
 export type EventAttendeeScalarFieldEnum = (typeof EventAttendeeScalarFieldEnum)[keyof typeof EventAttendeeScalarFieldEnum]
+
+
+export const AtendeeCheckInCodesScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  expiresAt: 'expiresAt'
+} as const
+
+export type AtendeeCheckInCodesScalarFieldEnum = (typeof AtendeeCheckInCodesScalarFieldEnum)[keyof typeof AtendeeCheckInCodesScalarFieldEnum]
 
 
 export const SortOrder = {
