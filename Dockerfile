@@ -89,7 +89,7 @@ RUN bun add prisma
 RUN chmod -R 777 /app/node_modules
 
 # Switch to non-root user for security best practices
-USER 1000
+USER bun
 
 # Expose port 3000 to allow HTTP traffic
 EXPOSE 3000
