@@ -1,28 +1,35 @@
 "use client";
-import * as React from "react";
-import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import EditCalendarIcon from "@mui/icons-material/EditCalendar";
+import EventIcon from "@mui/icons-material/Event";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import HomeIcon from "@mui/icons-material/Home";
+import MenuIcon from "@mui/icons-material/Menu";
+import MuiAppBar, {
+  type AppBarProps as MuiAppBarProps,
+} from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Divider from "@mui/material/Divider";
+import MuiDrawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from "@mui/icons-material/Home";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import EventIcon from "@mui/icons-material/Event";
-import EditCalendarIcon from "@mui/icons-material/EditCalendar";
-import { useSession } from "@/lib/auth-client";
+import {
+  type CSSObject,
+  styled,
+  type Theme,
+  useTheme,
+} from "@mui/material/styles";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import Link from "next/link";
+import * as React from "react";
+import { useSession } from "@/lib/auth-client";
 import AccountMenu from "./AccountButton";
 
 const drawerWidth = 240;
@@ -201,7 +208,7 @@ export default function MiniDrawer({
         </DrawerHeader>
         <Divider />
         {LINKS.map((section, index) => (
-          <React.Fragment key={index}>
+          <React.Fragment key={crypto.getRandomValues(new Uint32Array(1))[0]}>
             <List>
               {section.map(
                 (link) =>

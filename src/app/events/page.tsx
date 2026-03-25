@@ -1,7 +1,7 @@
+import { Stack, Typography } from "@mui/material";
+import type { Metadata } from "next";
 import AllEventList from "@/components/AllEventList";
 import TemporarySnackProvider from "@/components/TemporarySnackProvider";
-import { Stack, Typography } from "@mui/material";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "イベント一覧",

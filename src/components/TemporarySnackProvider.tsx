@@ -1,9 +1,9 @@
 "use client";
 
-import { enqueueSnackbar, SnackbarProvider, VariantType } from "notistack";
+import { usePathname } from "next/navigation";
+import { enqueueSnackbar, SnackbarProvider, type VariantType } from "notistack";
 import { useEffect } from "react";
 import { replacePath } from "@/lib/replacePathAction";
-import { usePathname } from "next/navigation";
 
 export interface SnackbarData {
   message: string;

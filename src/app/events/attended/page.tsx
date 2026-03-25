@@ -1,8 +1,8 @@
+import { Box, Button, Stack, Typography } from "@mui/material";
+import type { Metadata } from "next";
+import { headers } from "next/headers";
 import AttendedEventList from "@/components/AtendedEventList";
 import { auth } from "@/lib/auth";
-import { Box, Button, Stack, Typography } from "@mui/material";
-import { Metadata } from "next";
-import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "参加登録済みイベント",

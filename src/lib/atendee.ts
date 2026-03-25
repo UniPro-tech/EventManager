@@ -1,5 +1,5 @@
 import prisma from "./prisma";
-import { AtendeeStatus, AtendeePlain } from "./types/atendee";
+import type { AtendeePlain, AtendeeStatus } from "./types/atendee";
 
 export default class Atendee {
   id!: string;

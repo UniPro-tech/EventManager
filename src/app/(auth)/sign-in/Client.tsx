@@ -1,16 +1,16 @@
 "use client";
 
-import { signIn } from "@/lib/auth-client";
 import {
-  Card,
-  CardContent,
-  Typography,
   Alert,
   Button,
+  Card,
+  CardContent,
   Divider,
+  Typography,
 } from "@mui/material";
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
+import { signIn } from "@/lib/auth-client";
 
 export default function SignInPageClient({
   redirect: redirectUrl,

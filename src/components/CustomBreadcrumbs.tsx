@@ -1,7 +1,7 @@
 "use client";
+import { Breadcrumbs, Link as MUILink, Typography } from "@mui/material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Breadcrumbs, Link as MUILink, Typography } from "@mui/material";
 import React from "react";
 
 const SEGMENT_LABELS: Record<string, string> = {

@@ -1,9 +1,9 @@
-import Event from "@/lib/event";
-import { Stack, Typography, Box, Button, Paper } from "@mui/material";
-import EventCard from "./EventCard";
-import { auth } from "@/lib/auth";
+import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import { headers } from "next/headers";
 import { forbidden } from "next/navigation";
+import { auth } from "@/lib/auth";
+import type Event from "@/lib/event";
+import EventCard from "./EventCard";
 
 export async function EventList({ events }: { events: Event[] }) {
   const session = await auth.api.getSession({

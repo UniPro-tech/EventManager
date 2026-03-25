@@ -1,8 +1,8 @@
-import ManageEventList from "@/components/ManageEventList";
-import { auth } from "@/lib/auth";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { headers } from "next/headers";
 import { forbidden } from "next/navigation";
+import ManageEventList from "@/components/ManageEventList";
+import { auth } from "@/lib/auth";
 
 export const generateMetadata = async () => {
   const session = await auth.api.getSession({

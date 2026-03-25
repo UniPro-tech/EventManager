@@ -2,9 +2,9 @@
 import { Box, Button, Card, Stack, Typography } from "@mui/material";
 import {
   DataGrid,
-  GridColDef,
-  GridInitialState,
-  GridRowSelectionModel,
+  type GridColDef,
+  type GridInitialState,
+  type GridRowSelectionModel,
 } from "@mui/x-data-grid";
 import React from "react";
 

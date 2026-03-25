@@ -1,21 +1,20 @@
 "use server";
-import TemporarySnackProvider from "@/components/TemporarySnackProvider";
-import { auth } from "@/lib/auth";
-import Event from "@/lib/event";
-import { EventStatus } from "@/lib/types/event";
 import {
+  Box,
   Button,
   MenuItem,
   Select,
   Stack,
   TextField,
   Typography,
-  Box,
 } from "@mui/material";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { notFound, redirect } from "next/navigation";
-import { forbidden } from "next/navigation";
+import { forbidden, notFound, redirect } from "next/navigation";
+import TemporarySnackProvider from "@/components/TemporarySnackProvider";
+import { auth } from "@/lib/auth";
+import Event from "@/lib/event";
+import { EventStatus } from "@/lib/types/event";
 
 export const generateMetadata = async () => {
   return {

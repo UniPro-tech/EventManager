@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Alert, Box, Button, Snackbar, Stack, Typography } from "@mui/material";
 import jsQR from "jsqr";
-import { Box, Button, Stack, Typography, Snackbar, Alert } from "@mui/material";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export default function CheckinPageClient({ eventId }: { eventId: string }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);

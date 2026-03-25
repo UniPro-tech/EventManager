@@ -1,7 +1,7 @@
-import { betterAuth } from "better-auth/minimal";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import prisma from "@/lib/prisma";
+import { betterAuth } from "better-auth/minimal";
 import { admin, genericOAuth } from "better-auth/plugins";
+import prisma from "@/lib/prisma";
 
 export const auth = betterAuth({
   experimental: { joins: true },

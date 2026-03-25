@@ -1,6 +1,4 @@
 "use client";
-import { AtendeePlain, AtendeeStatus } from "@/lib/types/atendee";
-import { EventPlain, EventStatus } from "@/lib/types/event";
 import {
   Box,
   Button,
@@ -13,10 +11,11 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { redirect } from "next/navigation";
 import Link from "next/link";
-import React from "react";
-import { useState } from "react";
+import { redirect } from "next/navigation";
+import React, { useState } from "react";
+import { type AtendeePlain, AtendeeStatus } from "@/lib/types/atendee";
+import { type EventPlain, EventStatus } from "@/lib/types/event";
 
 export default function ActionBox({
   event,

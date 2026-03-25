@@ -1,7 +1,7 @@
 import Atendee from "./atendee";
-import { AtendeeStatus } from "./types/atendee";
 import prisma from "./prisma";
-import { EventPlain, EventStatus } from "./types/event";
+import { AtendeeStatus } from "./types/atendee";
+import { type EventPlain, EventStatus } from "./types/event";
 
 export default class Event {
   id: string;
@@ -162,9 +162,11 @@ export default class Event {
     });
   }
 
-  static async findAll({ status }: { status?: EventStatus[] } = {}): Promise<
-    Event[]
-  > {
+  static async findAll({
+    status,
+  }: {
+    status?: EventStatus[];
+  } = {}): Promise<Event[]> {
     if (status) {
       const events = await prisma.event.findMany({
         where: { status: { in: status } },

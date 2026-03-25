@@ -1,14 +1,14 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Box } from "@mui/material";
-import { signOut, useSession } from "@/lib/auth-client";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Tooltip from "@mui/material/Tooltip";
 import { redirect } from "next/navigation";
+import * as React from "react";
+import { signOut, useSession } from "@/lib/auth-client";
 
 export default function AccountMenu() {
   const { data: session } = useSession();

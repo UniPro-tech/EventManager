@@ -1,6 +1,6 @@
-import AttendedEventList from "@/components/AtendedEventList";
 import { Stack, Typography } from "@mui/material";
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import AttendedEventList from "@/components/AtendedEventList";
 
 export const metadata: Metadata = {
   title: "ダッシュボード - UniPro Event Manager",

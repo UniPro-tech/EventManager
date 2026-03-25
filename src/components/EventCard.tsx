@@ -1,23 +1,23 @@
-import Event from "@/lib/event";
-import { EventStatus } from "@/lib/types/event";
-import {
-  Card,
-  CardContent,
-  Typography,
-  Chip,
-  Box,
-  Button,
-  Stack,
-  Tooltip,
-} from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PeopleIcon from "@mui/icons-material/People";
 import ScheduleIcon from "@mui/icons-material/Schedule";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Chip,
+  Stack,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { headers } from "next/headers";
-import { auth } from "@/lib/auth";
-import Atendee from "@/lib/atendee";
-import { AtendeeStatus } from "@/lib/types/atendee";
 import Link from "next/link";
+import Atendee from "@/lib/atendee";
+import { auth } from "@/lib/auth";
+import type Event from "@/lib/event";
+import { AtendeeStatus } from "@/lib/types/atendee";
+import { EventStatus } from "@/lib/types/event";
 
 export default async function EventCard({
   event,

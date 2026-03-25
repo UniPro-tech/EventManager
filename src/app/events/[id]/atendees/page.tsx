@@ -1,8 +1,8 @@
+import { Stack, Typography } from "@mui/material";
+import { notFound } from "next/navigation";
 import EventAtendeeList from "@/components/AtendeeList";
 import Atendee from "@/lib/atendee";
 import Event from "@/lib/event";
-import { Stack, Typography } from "@mui/material";
-import { notFound } from "next/navigation";
 
 export default async function EventAtendeeListPage({
   params,

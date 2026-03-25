@@ -1,8 +1,8 @@
+import { headers } from "next/headers";
+import { notFound, unauthorized } from "next/navigation";
 import Atendee from "@/lib/atendee";
 import { auth } from "@/lib/auth";
 import Event from "@/lib/event";
-import { headers } from "next/headers";
-import { notFound, unauthorized } from "next/navigation";
 
 export const POST = async (
   request: Request,

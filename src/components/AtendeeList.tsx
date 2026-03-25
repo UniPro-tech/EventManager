@@ -1,9 +1,9 @@
+import { headers } from "next/headers";
+import type Atendee from "@/lib/atendee";
 import { auth } from "@/lib/auth";
 import Event from "@/lib/event";
-import EventAtendeeDataGridClient from "./AtendeeDataGridClient";
-import Atendee from "@/lib/atendee";
-import { headers } from "next/headers";
 import { AtendeeStatus } from "@/lib/types/atendee";
+import EventAtendeeDataGridClient from "./AtendeeDataGridClient";
 
 export default async function EventAtendeeList({
   atendees,

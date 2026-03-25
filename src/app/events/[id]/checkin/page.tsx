@@ -1,10 +1,10 @@
-import { auth } from "@/lib/auth";
-import prisma from "@/lib/prisma";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import QRCode from "react-qr-code";
+import { auth } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 import CheckinPageClient from "./Client";
 
 export default async function CheckinPage({

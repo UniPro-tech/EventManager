@@ -1,25 +1,25 @@
 "use server";
-import Event from "@/lib/event";
-import { EventStatus } from "@/lib/types/event";
-import {
-  Stack,
-  Typography,
-  Card,
-  CardContent,
-  Box,
-  Chip,
-  Divider,
-} from "@mui/material";
-import { forbidden, notFound } from "next/navigation";
-import ScheduleIcon from "@mui/icons-material/Schedule";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PeopleIcon from "@mui/icons-material/People";
+import ScheduleIcon from "@mui/icons-material/Schedule";
+import {
+  Box,
+  Card,
+  CardContent,
+  Chip,
+  Divider,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { headers } from "next/headers";
-import { auth } from "@/lib/auth";
-import ActionBox from "./ActionBox";
-import Atendee from "@/lib/atendee";
-import { AtendeeStatus } from "@/lib/types/atendee";
+import { forbidden, notFound } from "next/navigation";
 import TemporarySnackProvider from "@/components/TemporarySnackProvider";
+import Atendee from "@/lib/atendee";
+import { auth } from "@/lib/auth";
+import Event from "@/lib/event";
+import { AtendeeStatus } from "@/lib/types/atendee";
+import { EventStatus } from "@/lib/types/event";
+import ActionBox from "./ActionBox";
 
 export const generateMetadata = async ({
   params,
