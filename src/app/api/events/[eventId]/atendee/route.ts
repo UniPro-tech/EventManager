@@ -89,7 +89,7 @@ export const DELETE = async (
     }
     await atendenceData.delete();
     return new Response(null, { status: 204 });
-  } catch (error) {
+  } catch {
     return new Response(
       JSON.stringify({
         error: { code: "internal_error", message: "Unknown error occurred." },

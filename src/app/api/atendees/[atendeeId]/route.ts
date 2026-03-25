@@ -1,7 +1,7 @@
 import Atendee from "@/lib/atendee";
 
 export const DELETE = async (
-  request: Request,
+  _request: Request,
   { params }: { params: Promise<{ atendeeId: string }> },
 ) => {
   const atendeeId = (await params).atendeeId;
