@@ -1,6 +1,5 @@
 import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import { headers } from "next/headers";
-import { forbidden } from "next/navigation";
 import { auth } from "@/lib/auth";
 import type Event from "@/lib/event";
 import EventCard from "./EventCard";

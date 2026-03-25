@@ -1,18 +1,17 @@
 "use client";
 
-import { Alert, Box, Button, Snackbar, Stack, Typography } from "@mui/material";
-import jsQR from "jsqr";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import { Html5Qrcode } from "html5-qrcode";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function CheckinPageClient({ eventId }: { eventId: string }) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const streamRef = useRef<MediaStream | null>(null);
-  const rafRef = useRef<number | null>(null);
+  const scannerRef = useRef<HTMLDivElement | null>(null);
+  const html5QrCodeRef = useRef<Html5Qrcode | null>(null);
+  const router = useRouter();
   const [result, setResult] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [snackOpen, setSnackOpen] = useState(false);
 
   const handleSubmitCode = useCallback(
     async (code: string) => {
@@ -25,8 +24,7 @@ export default function CheckinPageClient({ eventId }: { eventId: string }) {
         });
         const body = await res.json().catch(() => ({}));
         if (res.ok) {
-          setStatus("出席登録完了");
-          setSnackOpen(true);
+          router.push(`/events/${eventId}/checkin/success`);
         } else {
           setStatus(body?.error ?? "エラー");
         }
@@ -35,81 +33,68 @@ export default function CheckinPageClient({ eventId }: { eventId: string }) {
         setStatus("送信失敗");
       }
     },
-    [eventId],
+    [eventId, router],
   );
+
+  const stopCamera = useCallback(async () => {
+    if (html5QrCodeRef.current) {
+      try {
+        await html5QrCodeRef.current.stop();
+      } catch {
+        // ignore stop errors
+      }
+      try {
+        html5QrCodeRef.current.clear();
+      } catch {
+        // ignore clear errors
+      }
+      html5QrCodeRef.current = null;
+    }
+  }, []);
 
   const startCamera = useCallback(async () => {
     setError(null);
     setStatus(null);
     setResult(null);
+    if (!scannerRef.current) {
+      setError("カメラ初期化に失敗しました");
+      return;
+    }
+    const elementId = scannerRef.current.id;
     try {
-      const constraints: MediaStreamConstraints = {
-        video: {
-          facingMode: "environment",
-          width: { ideal: 640 },
-          height: { ideal: 640 },
+      html5QrCodeRef.current = new Html5Qrcode(elementId);
+      await html5QrCodeRef.current.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: 248 },
+        (decodedText) => {
+          setResult(decodedText);
+          handleSubmitCode(decodedText);
+          void (async () => {
+            try {
+              await stopCamera();
+            } catch (_e) {
+              console.log("Error in stopping camera:", _e);
+            }
+          })();
         },
-      };
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
-      streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-      }
-      // start scanning loop
-      if (!rafRef.current) rafRef.current = requestAnimationFrame(scan);
+        (_errorMessage) => {
+          console.log("Error in Reading QR:", _errorMessage);
+        },
+      );
     } catch (e) {
       console.error(e);
       setError("カメラにアクセスできません");
     }
-  }, []);
-
-  const stopCamera = useCallback(() => {
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current);
-      rafRef.current = null;
-    }
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((t) => t.stop());
-      streamRef.current = null;
-    }
-  }, []);
+  }, [handleSubmitCode, stopCamera]);
 
   useEffect(() => {
     startCamera();
-    return () => stopCamera();
+    return () => {
+      void stopCamera();
+    };
   }, [startCamera, stopCamera]);
 
-  const scan = useCallback(() => {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-    if (!video || !canvas) {
-      rafRef.current = requestAnimationFrame(scan);
-      return;
-    }
-    const ctx = canvas.getContext("2d");
-    if (!ctx) {
-      rafRef.current = requestAnimationFrame(scan);
-      return;
-    }
-
-    const w = (canvas.width = video.videoWidth || 300);
-    const h = (canvas.height = video.videoHeight || 300);
-    try {
-      ctx.drawImage(video, 0, 0, w, h);
-      const imageData = ctx.getImageData(0, 0, w, h);
-      const code = jsQR(imageData.data, imageData.width, imageData.height);
-      if (code) {
-        setResult(code.data);
-        stopCamera();
-        handleSubmitCode(code.data);
-        return;
-      }
-    } catch (e) {
-      // ignore until video ready
-    }
-    rafRef.current = requestAnimationFrame(scan);
-  }, [handleSubmitCode, stopCamera]);
+  // scanning handled by html5-qrcode
 
   return (
     <Box>
@@ -117,6 +102,8 @@ export default function CheckinPageClient({ eventId }: { eventId: string }) {
         {error && <Typography color="error">{error}</Typography>}
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <div
+            ref={scannerRef}
+            id={`html5qr-scanner-${eventId}`}
             style={{
               position: "relative",
               width: 320,
@@ -127,27 +114,6 @@ export default function CheckinPageClient({ eventId }: { eventId: string }) {
               background: "#000",
             }}
           >
-            <video
-              ref={videoRef}
-              playsInline
-              muted
-              style={{
-                position: "absolute",
-                left: 0,
-                top: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                transform: "scaleX(-1)",
-              }}
-            />
-            <canvas
-              ref={canvasRef}
-              width={320}
-              height={320}
-              style={{ position: "absolute", left: 0, top: 0 }}
-            />
-
             {/* scanning frame */}
             <div
               aria-hidden
@@ -195,20 +161,6 @@ export default function CheckinPageClient({ eventId }: { eventId: string }) {
             再試行
           </Button>
         </Stack>
-
-        <Snackbar
-          open={snackOpen}
-          autoHideDuration={2500}
-          onClose={() => setSnackOpen(false)}
-        >
-          <Alert
-            onClose={() => setSnackOpen(false)}
-            severity="success"
-            sx={{ width: "100%" }}
-          >
-            出席登録が完了しました
-          </Alert>
-        </Snackbar>
       </Stack>
     </Box>
   );
