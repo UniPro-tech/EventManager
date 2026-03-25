@@ -42,7 +42,7 @@ export const POST = async (
     }
     const attendee = await event.addAtendee(session?.user.id!, jsonData.status);
     return new Response(JSON.stringify({ attendee }), { status: 201 });
-  } catch (error) {
+  } catch {
     return new Response(
       JSON.stringify({
         error: { code: "internal_error", message: "Unknown error occurred." },
@@ -141,7 +141,7 @@ export const PUT = async (
     return new Response(JSON.stringify({ attendee: atendenceData }), {
       status: 200,
     });
-  } catch (error) {
+  } catch {
     return new Response(
       JSON.stringify({
         error: { code: "internal_error", message: "Unknown error occurred." },
