@@ -49,16 +49,6 @@ export default async function EventCard({
       : "info"
     : null;
 
-  const truncate = (text?: string | null, max = 140) => {
-    if (!text) return "";
-    return text.length > max ? text.slice(0, max - 1) + "…" : text;
-  };
-
-  const TITLE_MAX = 80;
-  const DESC_MAX = 160;
-  const truncatedTitle = truncate(event.title, TITLE_MAX);
-  const truncatedDesc = truncate(event.description || "", DESC_MAX);
-
   return (
     <Card key={event.id} sx={{ mb: 2 }}>
       <CardContent>
@@ -69,28 +59,24 @@ export default async function EventCard({
           justifyContent="space-between"
           gap={1}
         >
-          <Tooltip
-            title={event.title || ""}
-            disableHoverListener={
-              !event.title || event.title.length <= TITLE_MAX
-            }
-          >
+          <Tooltip title={event.title || ""} sx={{ flexGrow: 1 }}>
             <Link
               href={`/events/${event.id}`}
               style={{ textDecoration: "none" }}
+              className="grow"
             >
               <Typography
                 variant="h6"
                 component="h3"
                 noWrap
                 sx={{
-                  maxWidth: { xs: "100%", sm: "60%", md: "80%" },
+                  width: "100%",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
                 }}
               >
-                {truncatedTitle}
+                {event.title}
               </Typography>
             </Link>
           </Tooltip>
@@ -135,7 +121,7 @@ export default async function EventCard({
                 <Chip
                   size="small"
                   label={registrationLabel}
-                  color={registrationColor as any}
+                  color={registrationColor as "success" | "info"}
                 />
               )}
             </Stack>
@@ -187,23 +173,19 @@ export default async function EventCard({
             : "当日まで可"}
         </Typography>
 
-        <Tooltip
-          title={event.description || ""}
-          disableHoverListener={
-            !event.description || event.description.length <= DESC_MAX
-          }
-        >
+        <Tooltip title={event.description || ""}>
           <Typography
             variant="body1"
             sx={{
               mt: 1,
               display: "-webkit-box",
-              WebkitLineClamp: { xs: 3, sm: "none" },
+              WebkitLineClamp: 4,
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
-            {truncatedDesc}
+            {event.description}
           </Typography>
         </Tooltip>
 
