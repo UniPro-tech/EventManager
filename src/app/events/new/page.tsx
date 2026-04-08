@@ -49,10 +49,10 @@ export default async function NewEventPage() {
       capacity: capacity ? parseInt(capacity, 10) : undefined,
       status: status as EventStatus,
     };
-    let event;
+    let event: Event;
     try {
       event = await Event.create(eventData);
-    } catch (error) {
+    } catch {
       return;
     }
     const msg = encodeURIComponent("イベントが作成されました");

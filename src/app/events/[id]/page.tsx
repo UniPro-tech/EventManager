@@ -12,7 +12,9 @@ import {
   Typography,
 } from "@mui/material";
 import { headers } from "next/headers";
-import { forbidden, notFound } from "next/navigation";
+import { forbidden, notFound, unauthorized } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import TemporarySnackProvider from "@/components/TemporarySnackProvider";
 import Atendee from "@/lib/atendee";
 import { auth } from "@/lib/auth";
@@ -72,8 +74,10 @@ export default async function EventPage({
   if (!event) notFound();
   if (event.status === EventStatus.Draft && !isAdmin) return forbidden();
 
+  if (!session?.user) unauthorized();
+
   const atendenceData = await Atendee.findByUserIdAndEventId(
-    session?.user?.id!,
+    session.user.id,
     event.id,
   );
 
@@ -162,7 +166,10 @@ export default async function EventPage({
                     <Chip
                       size="small"
                       label={registrationLabel}
-                      color={registrationColor as any}
+                      color={
+                        (registrationColor as "info" | "success" | null) ??
+                        undefined
+                      }
                     />
                   )}
                 </Stack>
@@ -211,8 +218,12 @@ export default async function EventPage({
 
             <Divider />
 
-            <Typography variant="body1" sx={{ whiteSpace: "pre-wrap" }}>
-              {event.description}
+            <Typography variant="body1">
+              <div className="markdown">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {event.description}
+                </ReactMarkdown>
+              </div>
             </Typography>
           </Stack>
           <ActionBox
