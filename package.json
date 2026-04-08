@@ -47,6 +47,9 @@
     "unrs-resolver"
   ],
   "trustedDependencies": [
+    "@prisma/engines",
+    "esbuild",
+    "prisma",
     "sharp",
     "unrs-resolver"
   ]
