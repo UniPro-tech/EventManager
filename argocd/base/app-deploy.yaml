@@ -27,19 +27,19 @@ spec:
               value: Asia/Tokyo
           readinessProbe:
             httpGet:
-              path: /
+              path: /api/health
               port: 3000
             periodSeconds: 30
             failureThreshold: 5
           livenessProbe:
             httpGet:
-              path: /
+              path: /api/health
               port: 3000
             periodSeconds: 30
             failureThreshold: 5
           startupProbe:
             httpGet:
-              path: /
+              path: /api/health
               port: 3000
             failureThreshold: 30
             periodSeconds: 20

@@ -7,3 +7,4 @@ resources:
   - secret.yaml
   - updater.yaml
   - ingress.yaml
+  - hpa.yaml
