@@ -48,7 +48,7 @@ spec:
               cpu: 100m # 必要最低限の0.1CPUを確保
               memory: 256Mi # 必要最低限の256MiBを確保
             limits:
-              cpu: 500m # 最大0.5CPUまで使用可能
+              cpu: 300m # 最大0.3CPUまで使用可能
               memory: 512Mi # 最大512MiBまで使用可能
       imagePullSecrets:
         - name: internal-harbor
