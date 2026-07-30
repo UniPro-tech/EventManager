@@ -6,5 +6,5 @@ resources:
   - app-deploy.yaml
   - secret.yaml
   - updater.yaml
-  - ingress.yaml
+  - httproute.yaml
   - hpa.yaml
